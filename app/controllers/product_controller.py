@@ -1,9 +1,11 @@
+import numbers
+
 from app.exceptions.exceptions import HttpException
+from app.models import db
 from app.models.category import Category
 from app.models.product import Product
 from app.services.validation_service import ValidationService
-from app.models import db
-import numbers
+from app.types.response_types import BasicResponse, StatusEnum
 from flask import jsonify
 
 
@@ -46,8 +48,8 @@ class ProductController:
         product = Product(data['name'], data['price'], category)
         db.session.add(product)
         db.session.commit()
-
-        return {'status': 'success', 'message': 'Product successfully created'}
+        return BasicResponse.get_dict_res(StatusEnum.SUCCESS,
+                                          'Product successfully created')
 
     @ staticmethod
     def delete_product(data: dict) -> dict:
@@ -61,4 +63,5 @@ class ProductController:
         db.session.delete(product)
         db.session.commit()
 
-        return {'status': 'success', 'message': 'Product deleted successfully'}
+        return BasicResponse.get_dict_res(StatusEnum.SUCCESS,
+                                          'Product deleted successfully')

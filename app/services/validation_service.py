@@ -3,6 +3,7 @@ from app.exceptions.exceptions import HttpException
 
 class ValidationService:
 
+    @staticmethod
     def check_validity(json, key_array):
         try:
             for key in key_array:
