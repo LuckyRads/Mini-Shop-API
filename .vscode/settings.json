@@ -1,4 +1,7 @@
 {
     "python.formatting.provider": "autopep8",
     "python.linting.pycodestyleEnabled": true,
+    "cSpell.words": [
+        "jsonify"
+    ],
 }
